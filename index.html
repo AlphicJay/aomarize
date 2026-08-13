@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aomarize - Multi-Region AI News Glass Sphere</title>
+  <link rel="stylesheet" href="styles/glassmorphism.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Ambient Glowing Background Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+
+    <!-- FRAMELESS GLASS TITLEBAR -->
+    <header class="glass-titlebar">
+      <div class="titlebar-brand">
+        <div class="brand-icon">A</div>
+        <span>AOMARIZE <span style="font-weight: 300; opacity: 0.8;">| AI GLASS SPHERE</span></span>
+      </div>
+
+      <div class="titlebar-center-status">
+        <div class="live-badge">
+          <div class="live-pulse"></div>
+          <span>LIVE FEEDS ACTIVE</span>
+        </div>
+        <span id="statTotalCount">12 Articles</span>
+      </div>
+
+      <div class="window-controls">
+        <button class="win-btn" id="winMinBtn" title="Minimize">—</button>
+        <button class="win-btn" id="winMaxBtn" title="Maximize">▢</button>
+        <button class="win-btn close-btn" id="winCloseBtn" title="Close">✕</button>
+      </div>
+    </header>
+
+    <!-- BREAKING NEWS TICKER BAR -->
+    <div class="news-ticker-container">
+      <div class="ticker-label">⚡ BREAKING AI</div>
+      <div class="ticker-track" id="tickerTrack">
+        <!-- Dynamically populated ticker items -->
+      </div>
+    </div>
+
+    <!-- MAIN BODY LAYOUT -->
+    <div class="main-content">
+      <!-- SIDEBAR REGION SWITCHER -->
+      <aside class="sidebar">
+        <div>
+          <div class="sidebar-section-title">Global Regions</div>
+          <div class="region-menu">
+            <button class="region-btn active" data-region="all">
+              <div class="region-btn-left">
+                <span class="region-flag">🌐</span>
+                <span>All Regions</span>
+              </div>
+              <span class="region-count-pill">12</span>
+            </button>
+
+            <button class="region-btn" data-region="us">
+              <div class="region-btn-left">
+                <span class="region-flag">🇺🇸</span>
+                <span>United States</span>
+              </div>
+              <span class="region-count-pill" id="statUsCount">3</span>
+            </button>
+
+            <button class="region-btn" data-region="uk">
+              <div class="region-btn-left">
+                <span class="region-flag">🇬🇧</span>
+                <span>United Kingdom</span>
+              </div>
+              <span class="region-count-pill" id="statUkCount">3</span>
+            </button>
+
+            <button class="region-btn" data-region="asia">
+              <div class="region-btn-left">
+                <span class="region-flag">🌏</span>
+                <span>Asia</span>
+              </div>
+              <span class="region-count-pill" id="statAsiaCount">3</span>
+            </button>
+
+            <button class="region-btn" data-region="africa">
+              <div class="region-btn-left">
+                <span class="region-flag">🌍</span>
+                <span>Africa</span>
+              </div>
+              <span class="region-count-pill" id="statAfricaCount">3</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="sidebar-section-title">Topics & Categories</div>
+          <div class="category-list">
+            <button class="cat-btn active" data-category="all">⚡ All Topics</button>
+            <button class="cat-btn" data-category="LLMs & GenAI">🤖 LLMs & GenAI</button>
+            <button class="cat-btn" data-category="Chips & Hardware">💻 Chips & Hardware</button>
+            <button class="cat-btn" data-category="Policy & Ethics">🏛️ Policy & Ethics</button>
+            <button class="cat-btn" data-category="Startups & VC">🚀 Startups & VC</button>
+            <button class="cat-btn" data-category="Research & Science">🧪 Research & Science</button>
+          </div>
+        </div>
+
+        <!-- SIDEBAR STATS WIDGET -->
+        <div class="sidebar-widget">
+          <div class="widget-title">Regional Activity Index</div>
+          <div class="stat-row">
+            <span>Silicon Valley & US</span>
+            <span style="color: var(--neon-cyan)">98%</span>
+          </div>
+          <div class="stat-bar-container">
+            <div class="stat-bar-fill" style="width: 98%;"></div>
+          </div>
+
+          <div class="stat-row" style="margin-top: 6px;">
+            <span>London & UK AISI</span>
+            <span style="color: var(--neon-purple)">89%</span>
+          </div>
+          <div class="stat-bar-container">
+            <div class="stat-bar-fill" style="width: 89%; background: linear-gradient(90deg, #a855f7, #ec4899);"></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- FEED VIEWPORT -->
+      <main class="feed-viewport">
+        <header class="feed-header">
+          <div class="feed-title-row">
+            <div class="feed-heading">
+              <div>
+                <h1 class="feed-title" id="feedTitle">Global Regional Feed</h1>
+                <p class="feed-subtitle" id="feedSubtitle">Live coverage from Silicon Valley, London, East Asia, and African hubs</p>
+              </div>
+            </div>
+
+            <div class="toolbar-controls">
+              <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search AI news, models, chips...">
+              </div>
+
+              <button class="action-btn" id="bookmarkFilterBtn" title="Saved Articles">
+                ★ Bookmarks
+              </button>
+
+              <button class="action-btn" id="refreshFeedBtn" title="Sync Feeds">
+                🔄 Sync
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <!-- ARTICLES GRID CONTAINER -->
+        <div class="feed-content-scroll">
+          <div class="articles-grid" id="articlesGrid">
+            <!-- Glass Cards injected via app.js -->
+          </div>
+
+          <!-- Empty Search State -->
+          <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon">🔍</div>
+            <h3>No AI news articles found</h3>
+            <p>Try adjusting your search query, selecting another category, or choosing a different region.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- GLASS READER MODAL -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="glass-modal">
+      <div class="modal-header">
+        <span style="font-size: 12px; font-weight: 700; color: var(--neon-cyan); letter-spacing: 1px;">AOMARIZE INTELLIGENCE READER</span>
+        <div class="modal-header-actions">
+          <button class="action-btn" id="modalSourceLink" style="font-size: 11px;">
+            🌐 Open Original Source
+          </button>
+          <button class="modal-close-btn" id="modalCloseBtn" title="Close Modal">✕</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <h2 class="modal-article-title" id="modalArticleTitle">Article Title</h2>
+        <div class="modal-meta-bar" id="modalMetaBar"></div>
+
+        <!-- AI Key Takeaways -->
+        <div class="ai-takeaways-card">
+          <div class="takeaways-title">
+            <span>🤖 AI Key Takeaways</span>
+          </div>
+          <ul class="takeaways-list" id="modalTakeawaysList">
+            <!-- Injected via app.js -->
+          </ul>
+        </div>
+
+        <div class="modal-full-text" id="modalFullText">
+          <!-- Full story paragraphs injected via app.js -->
+        </div>
+      </div>
+
+      <!-- TTS AUDIO PLAYER BAR -->
+      <div class="tts-player-bar">
+        <div class="tts-controls">
+          <button class="tts-play-btn" id="ttsPlayBtn" title="Play Story Audio">▶️</button>
+          <div>
+            <div style="font-weight: 700; font-size: 13px; color: #fff;">Text-to-Speech Audio Reader</div>
+            <div class="tts-status" id="ttsStatus">Listen to Story</div>
+          </div>
+        </div>
+        <span style="font-size: 11px; color: var(--text-subtle);">Powered by Web Speech Synthesis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="src/newsData.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
