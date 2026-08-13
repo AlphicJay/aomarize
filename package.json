@@ -6,6 +6,7 @@
   "scripts": {
     "start": "electron .",
     "dev": "electron . --enable-logging",
+    "postinstall": "xattr -cr node_modules/electron 2>/dev/null || true",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -23,6 +24,6 @@
   "author": "Aomarize Team",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^31.3.0"
+    "electron": "^31.7.7"
   }
 }

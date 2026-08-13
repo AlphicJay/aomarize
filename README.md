@@ -68,6 +68,11 @@ npm -v
    npm start
    ```
 
+> 💡 **macOS Troubleshooting Note**: If macOS displays a Gatekeeper security dialog saying *"Electron.app was not opened because it contains malware"*, run the following command once to clear the macOS download quarantine flag:
+> ```bash
+> xattr -cr node_modules/electron
+> ```
+
 ---
 
 ## 📦 Building for Production
