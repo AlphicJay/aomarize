@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "dev": "electron . --enable-logging",
-    "postinstall": "xattr -cr node_modules/electron 2>/dev/null || true",
+    "postinstall": "node node_modules/electron/install.js && (xattr -cr node_modules/electron 2>/dev/null || true) && (codesign --force --deep --sign - node_modules/electron/dist/Electron.app 2>/dev/null || true)",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
