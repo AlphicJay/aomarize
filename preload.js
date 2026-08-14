@@ -13,6 +13,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // System actions
   openExternal: (url) => shell.openExternal(url),
   sendNotification: (title, body) => ipcRenderer.send('notify', { title, body }),
+  fetchNews: (region) => ipcRenderer.invoke('fetch-news', region),
   
   // Feed & IPC Utilities
   onWindowMaximizeToggle: (callback) => ipcRenderer.on('window-maximized-state', (_event, isMaximized) => callback(isMaximized))

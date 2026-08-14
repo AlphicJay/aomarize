@@ -73,6 +73,85 @@ ipcMain.on('notify', (_event, { title, body }) => {
   }
 });
 
+const Parser = require('rss-parser');
+const parser = new Parser({
+  customFields: {
+    item: ['media:content', 'description']
+  }
+});
+
+async function fetchGoogleNews(region) {
+  let query = 'AI news';
+  let hl = 'en-US';
+  let gl = 'US';
+  let ceid = 'US:en';
+
+  if (region === 'uk') {
+    query = 'AI news UK';
+    hl = 'en-GB';
+    gl = 'GB';
+    ceid = 'GB:en';
+  } else if (region === 'asia') {
+    query = 'AI news Asia';
+  } else if (region === 'africa') {
+    query = 'AI news Africa';
+  } else if (region === 'us') {
+    query = 'AI news US';
+  }
+  
+  const url = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=${hl}&gl=${gl}&ceid=${ceid}`;
+  
+  try {
+    const feed = await parser.parseURL(url);
+    return feed.items.map((item, index) => {
+      let snippet = item.contentSnippet || item.description || '';
+      snippet = snippet.replace(/<[^>]+>/g, '').trim();
+      if (snippet.length > 250) snippet = snippet.substring(0, 247) + '...';
+      
+      let imageUrl = null;
+      if (item['media:content'] && item['media:content']['$'] && item['media:content']['$'].url) {
+         imageUrl = item['media:content']['$'].url;
+      }
+      
+      // Match the format expected by the frontend
+      let regionTag = region === 'all' ? 'global' : region;
+      let regionName = regionTag.charAt(0).toUpperCase() + regionTag.slice(1);
+      if (regionTag === 'us') regionName = 'United States';
+      if (regionTag === 'uk') regionName = 'United Kingdom';
+      if (regionTag === 'global') regionName = 'Global';
+
+      return {
+        id: `${regionTag}-${index}`,
+        region: regionTag,
+        regionName: regionName,
+        flag: regionTag === 'us' ? '🇺🇸' : regionTag === 'uk' ? '🇬🇧' : regionTag === 'asia' ? '🌏' : regionTag === 'africa' ? '🌍' : '🌐',
+        title: item.title,
+        snippet: snippet,
+        fullText: snippet + '\\n\\n(Full text unavailable from RSS feed. Please read the original article.)',
+        keyTakeaways: ['Extracted from Google News RSS.', 'Live automated feed.'],
+        source: item.source || item.creator || 'Google News',
+        url: item.link,
+        category: 'Live News',
+        date: item.pubDate || new Date().toISOString(),
+        readTime: 'Article',
+        sentiment: 'News',
+        imageUrl: imageUrl
+      };
+    }).slice(0, 15);
+  } catch (err) {
+    console.error('Error fetching RSS:', err);
+    throw err;
+  }
+}
+
+ipcMain.handle('fetch-news', async (_event, region) => {
+  return await fetchGoogleNews(region);
+});
+
+ipcMain.on('open-external', (_event, url) => {
+  shell.openExternal(url);
+});
+
 app.whenReady().then(() => {
   createWindow();
 

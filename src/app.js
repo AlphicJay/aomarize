@@ -172,12 +172,12 @@ function updateFeedHeader() {
 }
 
 // Render News Feed Cards
-function renderFeed() {
+async function renderFeed() {
   const grid = document.getElementById('articlesGrid');
   const emptyState = document.getElementById('emptyState');
   const bookmarkOnly = document.getElementById('bookmarkFilterBtn')?.classList.contains('active');
 
-  let articles = fetchRegionalArticles(currentRegion);
+  let articles = await fetchRegionalArticles(currentRegion);
 
   // Filter by category
   if (currentCategory !== 'all') {
@@ -231,6 +231,7 @@ function renderFeed() {
         </div>
 
         <div class="card-body">
+          ${article.imageUrl ? `<img src="${article.imageUrl}" alt="News Image" style="width:100%; height:140px; object-fit:cover; border-radius: 8px; margin-bottom: 8px;"/>` : ''}
           <h3 class="card-title">${escapeHTML(article.title)}</h3>
           <p class="card-snippet">${escapeHTML(article.snippet)}</p>
         </div>

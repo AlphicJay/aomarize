@@ -25,5 +25,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^31.7.7"
+  },
+  "dependencies": {
+    "rss-parser": "^3.13.0"
   }
 }

@@ -296,6 +296,14 @@ function getAllArticles() {
 // Fetch live articles (attempts live RSS endpoint or fallback)
 async function fetchRegionalArticles(regionFilter = 'all') {
   try {
+    if (window.electronAPI && window.electronAPI.fetchNews) {
+      const liveData = await window.electronAPI.fetchNews(regionFilter);
+      if (liveData && liveData.length > 0) {
+        return liveData;
+      }
+    }
+    
+    // Fallback to static mock data if live fetch fails or is empty
     let dataset = [];
     if (regionFilter === 'all') {
       dataset = getAllArticles();
