@@ -164,12 +164,14 @@ function initTicker() {
 // Sidebar Regional Stats Widget
 function initStats() {
   const stats = getRegionalStats();
+  const allCountEl = document.getElementById('statAllCount');
   const usCountEl = document.getElementById('statUsCount');
   const ukCountEl = document.getElementById('statUkCount');
   const asiaCountEl = document.getElementById('statAsiaCount');
   const africaCountEl = document.getElementById('statAfricaCount');
   const totalCountEl = document.getElementById('statTotalCount');
 
+  if (allCountEl) allCountEl.textContent = stats.total || '100+';
   if (usCountEl) usCountEl.textContent = stats.us;
   if (ukCountEl) ukCountEl.textContent = stats.uk;
   if (asiaCountEl) asiaCountEl.textContent = stats.asia;
@@ -299,6 +301,8 @@ async function renderFeed(silent = false) {
   if (silent && container) {
     container.scrollTop = savedScroll;
   }
+
+  initStats();
 }
 
 // Toggle Bookmarking

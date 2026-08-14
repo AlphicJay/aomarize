@@ -1,5 +1,6 @@
 {
   "name": "aomarize",
+  "productName": "Aomarize",
   "version": "1.0.0",
   "description": "A cross-platform Glassmorphism Desktop App for real-time AI news across U.S., UK, Asia, and Africa.",
   "main": "main.js",

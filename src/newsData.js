@@ -334,13 +334,13 @@ async function fetchRegionalArticles(regionFilter = 'all') {
 // Calculate regional activity statistics
 function getRegionalStats() {
   const stats = {
-    us: REGIONAL_FEEDS.us.length,
-    uk: REGIONAL_FEEDS.uk.length,
-    asia: REGIONAL_FEEDS.asia.length,
-    africa: REGIONAL_FEEDS.africa.length,
+    us: (cachedArticles.us && cachedArticles.us.length) || REGIONAL_FEEDS.us.length,
+    uk: (cachedArticles.uk && cachedArticles.uk.length) || REGIONAL_FEEDS.uk.length,
+    asia: (cachedArticles.asia && cachedArticles.asia.length) || REGIONAL_FEEDS.asia.length,
+    africa: (cachedArticles.africa && cachedArticles.africa.length) || REGIONAL_FEEDS.africa.length,
     total: 0
   };
-  stats.total = stats.us + stats.uk + stats.asia + stats.africa;
+  stats.total = (cachedArticles.all && cachedArticles.all.length) || (stats.us + stats.uk + stats.asia + stats.africa);
   return stats;
 }
 
