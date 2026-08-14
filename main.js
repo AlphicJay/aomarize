@@ -1,6 +1,10 @@
 const { app, BrowserWindow, ipcMain, Notification, shell } = require('electron');
 const path = require('path');
 
+if (process.platform === 'darwin') {
+  app.dock.setIcon(path.join(__dirname, 'assets/icon.png'));
+}
+
 let mainWindow;
 
 function createWindow() {
@@ -80,6 +84,15 @@ const parser = new Parser({
   }
 });
 
+function determineCategory(text) {
+  const lower = text.toLowerCase();
+  if (lower.match(/chip|nvidia|intel|amd|semiconductor|hardware|gpu|processor/)) return 'Chips & Hardware';
+  if (lower.match(/policy|ethics|regulation|law|government|safety|aisi|congress|eu|act/)) return 'Policy & Ethics';
+  if (lower.match(/startup|vc|funding|raise|venture|capital|series|valuation/)) return 'Startups & VC';
+  if (lower.match(/research|science|discovery|quantum|physics|paper|study|university|deepmind|lab/)) return 'Research & Science';
+  return 'LLMs & GenAI';
+}
+
 async function fetchGoogleNews(region) {
   let query = 'AI news';
   let hl = 'en-US';
@@ -131,7 +144,7 @@ async function fetchGoogleNews(region) {
         keyTakeaways: ['Extracted from Google News RSS.', 'Live automated feed.'],
         source: item.source || item.creator || 'Google News',
         url: item.link,
-        category: 'Live News',
+        category: determineCategory(item.title + ' ' + snippet),
         date: item.pubDate || new Date().toISOString(),
         readTime: 'Article',
         sentiment: 'News',

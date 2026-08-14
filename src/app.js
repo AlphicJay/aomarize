@@ -10,6 +10,9 @@ let activeArticleModal = null;
 let synth = window.speechSynthesis;
 let currentUtterance = null;
 let isSpeaking = false;
+let scrollInterval = null;
+let isUserHovering = false;
+let pollingInterval = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   initWindowControls();
@@ -19,8 +22,37 @@ document.addEventListener('DOMContentLoaded', () => {
   initTicker();
   initStats();
   initReaderModal();
+  initAutoScroll();
+  initFeedPolling();
   renderFeed();
 });
+
+function initAutoScroll() {
+  const container = document.querySelector('.feed-content-scroll');
+  if (!container) return;
+
+  container.addEventListener('mouseenter', () => isUserHovering = true);
+  container.addEventListener('mouseleave', () => isUserHovering = false);
+  
+  if (scrollInterval) clearInterval(scrollInterval);
+  
+  scrollInterval = setInterval(() => {
+    // Scroll slowly down (stops naturally at bottom)
+    if (!isUserHovering && !activeArticleModal && !searchQuery) {
+      container.scrollTop += 1;
+    }
+  }, 40);
+}
+
+function initFeedPolling() {
+  if (pollingInterval) clearInterval(pollingInterval);
+  pollingInterval = setInterval(() => {
+    if (!activeArticleModal && !searchQuery) {
+      // Re-render feed silently to fetch new cached RSS items
+      renderFeed(true);
+    }
+  }, 10000);
+}
 
 // Window Controls Setup (IPC with preload bridge)
 function initWindowControls() {
@@ -172,10 +204,14 @@ function updateFeedHeader() {
 }
 
 // Render News Feed Cards
-async function renderFeed() {
+async function renderFeed(silent = false) {
   const grid = document.getElementById('articlesGrid');
   const emptyState = document.getElementById('emptyState');
+  const container = document.querySelector('.feed-content-scroll');
   const bookmarkOnly = document.getElementById('bookmarkFilterBtn')?.classList.contains('active');
+
+  let savedScroll = 0;
+  if (silent && container) savedScroll = container.scrollTop;
 
   let articles = await fetchRegionalArticles(currentRegion);
 
@@ -259,6 +295,10 @@ async function renderFeed() {
       if (found) openReaderModal(found);
     });
   });
+
+  if (silent && container) {
+    container.scrollTop = savedScroll;
+  }
 }
 
 // Toggle Bookmarking

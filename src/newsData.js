@@ -293,17 +293,28 @@ function getAllArticles() {
   return all.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
+let cachedArticles = {};
+
 // Fetch live articles (attempts live RSS endpoint or fallback)
 async function fetchRegionalArticles(regionFilter = 'all') {
   try {
     if (window.electronAPI && window.electronAPI.fetchNews) {
       const liveData = await window.electronAPI.fetchNews(regionFilter);
       if (liveData && liveData.length > 0) {
-        return liveData;
+        if (!cachedArticles[regionFilter]) cachedArticles[regionFilter] = [];
+        const existingUrls = new Set(cachedArticles[regionFilter].map(a => a.url));
+        const newItems = liveData.filter(a => !existingUrls.has(a.url));
+        // Prepend new items
+        cachedArticles[regionFilter] = [...newItems, ...cachedArticles[regionFilter]];
+        return cachedArticles[regionFilter];
       }
     }
     
-    // Fallback to static mock data if live fetch fails or is empty
+    // Fallback to static mock data if live fetch fails or is empty, BUT only if we have no cached data
+    if (cachedArticles[regionFilter] && cachedArticles[regionFilter].length > 0) {
+      return cachedArticles[regionFilter];
+    }
+
     let dataset = [];
     if (regionFilter === 'all') {
       dataset = getAllArticles();
@@ -313,6 +324,9 @@ async function fetchRegionalArticles(regionFilter = 'all') {
     return dataset;
   } catch (err) {
     console.warn('Error retrieving feed, utilizing curated dataset:', err);
+    if (cachedArticles[regionFilter] && cachedArticles[regionFilter].length > 0) {
+      return cachedArticles[regionFilter];
+    }
     return getAllArticles();
   }
 }
