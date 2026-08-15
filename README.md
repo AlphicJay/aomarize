@@ -31,34 +31,52 @@ Built with a state-of-the-art **Glassmorphic interface**, backdrop blur, ambient
 
 ---
 
-## 💾 Downloads & Operating System Support
+## 💾 Downloads & Instant Installation
 
-Aomarize runs natively across **macOS**, **Windows**, and **Linux**. Pre-built binaries are located in the `dist/` directory or can be generated using the build commands below:
+Download the latest official release of Aomarize for your operating system:
 
-| Operating System | Recommended Download Package | Alternative Format |
+<div align="center">
+
+[![Download for macOS](https://img.shields.io/badge/Download-macOS%20(.dmg)-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize-1.0.0-arm64.dmg)
+[![Download for Windows](https://img.shields.io/badge/Download-Windows%20(.exe)-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize.Setup.1.0.0.exe)
+[![Download for Linux](https://img.shields.io/badge/Download-Linux%20(.AppImage)-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize-1.0.0-arm64.AppImage)
+
+[![All Releases](https://img.shields.io/badge/View_All_Downloads-GitHub_Releases-2ea44f?style=for-the-badge&logo=github)](https://github.com/AlphicJay/aomarize/releases/latest)
+
+</div>
+
+### 📥 Direct Download Links
+
+| Operating System | Primary Download (Click to Download) | Alternative Portable / Archive Format |
 | :--- | :--- | :--- |
-| 🍏 **macOS** (Apple Silicon & Intel) | **`Aomarize-1.0.0-arm64.dmg`** / **`Aomarize-1.0.0.dmg`** | `Aomarize-1.0.0-mac.zip` |
-| 🪟 **Windows** (10 / 11 64-bit) | **`Aomarize Setup 1.0.0.exe`** (Installer) | `Aomarize 1.0.0.exe` (Portable) / `.zip` |
-| 🐧 **Linux** (Ubuntu, Debian, Fedora, Arch) | **`Aomarize-1.0.0.AppImage`** (Universal) | `Aomarize_1.0.0_amd64.deb` / `.tar.gz` |
+| 🍏 **macOS** (Apple Silicon & Intel) | [**⬇️ Download `Aomarize-1.0.0-arm64.dmg`**](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize-1.0.0-arm64.dmg)<br>*(or [Local repo file](./dist/Aomarize-1.0.0-arm64.dmg))* | [⬇️ `Aomarize-1.0.0-arm64-mac.zip`](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize-1.0.0-arm64-mac.zip) *(or [Local](./dist/Aomarize-1.0.0-arm64-mac.zip))* |
+| 🪟 **Windows** (10 / 11 64-bit) | [**⬇️ Download `Aomarize Setup 1.0.0.exe` (Installer)**](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize.Setup.1.0.0.exe)<br>*(or [Local repo file](./dist/Aomarize%20Setup%201.0.0.exe))* | [⬇️ `Aomarize 1.0.0.exe` (Portable)](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize.1.0.0.exe) • [⬇️ `.zip`](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize-1.0.0-arm64-win.zip) *(or [Local](./dist/Aomarize-1.0.0-arm64-win.zip))* |
+| 🐧 **Linux** (Ubuntu, Debian, Fedora, Arch) | [**⬇️ Download `Aomarize-1.0.0-arm64.AppImage`**](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize-1.0.0-arm64.AppImage)<br>*(or [Local repo file](./dist/Aomarize-1.0.0-arm64.AppImage))* | [⬇️ `aomarize_1.0.0_arm64.deb`](https://github.com/AlphicJay/aomarize/releases/latest/download/aomarize_1.0.0_arm64.deb) • [⬇️ `.tar.gz`](https://github.com/AlphicJay/aomarize/releases/latest/download/aomarize-1.0.0-arm64.tar.gz) *(or [Local](./dist/aomarize_1.0.0_arm64.deb))* |
 
-### 🍏 macOS Installation
-1. Open the downloaded `.dmg` file.
-2. Drag and drop **Aomarize** into your `/Applications` folder.
-3. Launch from Spotlight or Launchpad.
+---
 
-### 🪟 Windows Installation
-1. Run `Aomarize Setup 1.0.0.exe` to install, or double-click `Aomarize Portable.exe` for zero-install instant execution.
-2. A desktop and Start Menu shortcut will be created automatically.
+### 💻 Installation Guides
 
-### 🐧 Linux Installation
-- **AppImage**:
+#### 🍏 macOS Installation
+1. Click the [**Download macOS (.dmg)**](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize-1.0.0-arm64.dmg) link above.
+2. Open the downloaded `.dmg` file and drag **Aomarize** into your `/Applications` folder.
+3. Open Aomarize from Spotlight or Launchpad.
+
+#### 🪟 Windows Installation
+1. Click the [**Download Windows (.exe)**](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize.Setup.1.0.0.exe) link above.
+2. Run the installer (or use the [Portable `.exe`](https://github.com/AlphicJay/aomarize/releases/latest/download/Aomarize.1.0.0.exe) for zero-install instant execution).
+3. The app creates a desktop and Start Menu shortcut automatically.
+
+#### 🐧 Linux Installation
+- **AppImage (Recommended)**:
   ```bash
-  chmod +x Aomarize-1.0.0.AppImage
-  ./Aomarize-1.0.0.AppImage
+  # Make executable and run
+  chmod +x Aomarize-1.0.0-arm64.AppImage
+  ./Aomarize-1.0.0-arm64.AppImage
   ```
 - **Debian / Ubuntu (.deb)**:
   ```bash
-  sudo dpkg -i Aomarize_1.0.0_amd64.deb
+  sudo dpkg -i aomarize_1.0.0_arm64.deb
   ```
 
 ---
