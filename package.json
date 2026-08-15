@@ -9,9 +9,9 @@
     "dev": "electron . --enable-logging",
     "postinstall": "node node_modules/electron/install.js && (xattr -cr node_modules/electron 2>/dev/null || true) && (codesign --force --deep --sign - node_modules/electron/dist/Electron.app 2>/dev/null || true)",
     "build:mac": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac",
-    "build:win": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win",
-    "build:linux": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --linux",
-    "build:all": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -mwl",
+    "build:win": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --x64",
+    "build:linux": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --linux --x64",
+    "build:all": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -mwl --x64",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
