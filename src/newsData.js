@@ -24,7 +24,7 @@ Federal officials emphasized that establishing standardized testing suites in Ma
       ],
       source: 'TechCrunch AI',
       url: 'https://techcrunch.com/category/artificial-intelligence/',
-      category: 'Policy & Ethics',
+      category: 'AI Regulations',
       date: '2026-08-12T14:30:00Z',
       readTime: '4 min read',
       sentiment: 'Positive Governance'
@@ -68,7 +68,7 @@ In pilot studies across American university laboratories, the system predicted b
       ],
       source: 'MIT Technology Review',
       url: 'https://technologyreview.com',
-      category: 'Research & Science',
+      category: 'AI Health / Medicines',
       date: '2026-08-10T16:45:00Z',
       readTime: '5 min read',
       sentiment: 'Breakthrough'
@@ -93,7 +93,7 @@ Technology Secretary announced partnerships with Cambridge and Oxford AI labs to
       ],
       source: 'BBC Tech & Science',
       url: 'https://bbc.com/news/technology',
-      category: 'Policy & Ethics',
+      category: 'AI Regulations',
       date: '2026-08-12T11:20:00Z',
       readTime: '4 min read',
       sentiment: 'Strategic Growth'
@@ -115,7 +115,7 @@ Aerospace engineers at Rolls-Royce and BAE Systems have begun integrating the Lo
       ],
       source: 'The Guardian Tech',
       url: 'https://theguardian.com/technology',
-      category: 'Research & Science',
+      category: 'AI Health / Medicines',
       date: '2026-08-10T08:30:00Z',
       readTime: '5 min read',
       sentiment: 'Breakthrough'
@@ -275,7 +275,7 @@ The initiative places special emphasis on nurturing youth developer talent throu
       ],
       source: 'AllAfrica Tech',
       url: 'https://allafrica.com/technology',
-      category: 'Policy & Ethics',
+      category: 'AI Regulations',
       date: '2026-08-08T12:00:00Z',
       readTime: '4 min read',
       sentiment: 'Policy Milestone'

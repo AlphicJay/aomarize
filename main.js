@@ -92,10 +92,10 @@ const parser = new Parser({
 
 function determineCategory(text) {
   const lower = text.toLowerCase();
-  if (lower.match(/chip|nvidia|intel|amd|semiconductor|hardware|gpu|processor/)) return 'Chips & Hardware';
-  if (lower.match(/policy|ethics|regulation|law|government|safety|aisi|congress|eu|act/)) return 'Policy & Ethics';
-  if (lower.match(/startup|vc|funding|raise|venture|capital|series|valuation/)) return 'Startups & VC';
-  if (lower.match(/research|science|discovery|quantum|physics|paper|study|university|deepmind|lab/)) return 'Research & Science';
+  if (lower.match(/health|medicin|medical|biotech|cancer|clinical|drug|pharma|protein|biology|hospital|patient|genomic|diagnostic|disease|healthcare/)) return 'AI Health / Medicines';
+  if (lower.match(/policy|ethics|regulation|law|government|safety|aisi|congress|eu|act|ban|antitrust|copyright|compliance|governance/)) return 'AI Regulations';
+  if (lower.match(/chip|nvidia|intel|amd|semiconductor|hardware|gpu|processor|silicon|datacenter/)) return 'Chips & Hardware';
+  if (lower.match(/startup|vc|funding|raise|venture|capital|series|valuation|investment/)) return 'Startups & VC';
   return 'LLMs & GenAI';
 }
 
@@ -108,9 +108,10 @@ const REGION_QUERIES = {
       'Artificial Intelligence United States news',
       'OpenAI OR Anthropic OR "Google DeepMind" OR NVIDIA',
       'Silicon Valley AI startups venture capital funding',
+      'AI healthcare medicine drug discovery biotechnology oncology',
       'LLM Machine Learning frontier model research',
       'AI semiconductor chips GPU Blackwell datacenter',
-      'AI Safety Institute NIST policy regulation AI Act',
+      'AI Safety Institute NIST policy regulation AI Act legislation',
       'Generative AI enterprise software automation',
       'Autonomous AI agents robotics humanoid'
     ]
@@ -121,12 +122,12 @@ const REGION_QUERIES = {
     ceid: 'GB:en',
     queries: [
       'Artificial Intelligence United Kingdom news',
-      'UK AI Safety Institute London frontier models',
-      'DeepMind London Cambridge Oxford AI research',
+      'UK AI Safety Institute London frontier models policy regulation',
+      'DeepMind London Cambridge Oxford AI medicine drug discovery biology',
       'UK AI tech startups fintech investment London',
-      'Britain AI governance policy regulation science',
+      'Britain AI governance policy regulation science standards',
       'European AI compute infrastructure chips supercomputer',
-      'UK healthcare biotech NHS Artificial Intelligence',
+      'UK healthcare biotech NHS Artificial Intelligence medicine',
       'London artificial intelligence conference summit innovation'
     ]
   },
@@ -137,12 +138,12 @@ const REGION_QUERIES = {
     queries: [
       'Artificial Intelligence Asia tech news',
       'TSMC semiconductor AI chips hardware Taiwan',
-      'Japan robotics humanoid AI automation Fanuc',
-      'Singapore ASEAN AI SeaLion LLM innovation',
-      'South Korea Samsung SK Hynix HBM AI memory chips',
+      'Japan robotics humanoid AI healthcare automation',
+      'Singapore ASEAN AI SeaLion LLM healthcare governance',
+      'South Korea Samsung SK Hynix HBM AI memory chips biotech',
       'China AI foundation models DeepSeek Baidu Alibaba Tencent',
-      'India AI startups technology developers talent compute',
-      'East Asia AI research quantum computing robotics'
+      'India AI startups technology developers talent compute healthcare',
+      'East Asia AI regulation policy quantum computing'
     ]
   },
   africa: {
@@ -152,11 +153,11 @@ const REGION_QUERIES = {
     queries: [
       'Artificial Intelligence Africa technology innovation',
       'African AI startups tech funding venture capital',
+      'Healthcare telemedicine diagnostic AI Africa medicine health',
       'Masakhane Lelapa AI African indigenous languages NLP',
       'Nigeria Kenya South Africa Artificial Intelligence fintech',
-      'Rwanda Kigali African Union AI policy governance',
+      'Rwanda Kigali African Union AI policy governance regulation',
       'Agritech AI satellite drone agriculture Africa farming',
-      'Healthcare telemedicine diagnostic AI Africa health',
       'African youth digital skills AI education hub'
     ]
   }

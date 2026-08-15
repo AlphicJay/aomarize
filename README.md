@@ -24,73 +24,64 @@ Built with a state-of-the-art **Glassmorphic interface**, backdrop blur, ambient
 - ⚡ **Breaking AI News Ticker**: Continuous horizontal marquee displaying real-time regional headlines.
 - 🤖 **AI Key Takeaways & Glass Reader**: Slide-over reader modal summarizing top 3 bullet points for rapid scanning.
 - 🎧 **Built-in Audio Reader (TTS)**: Listen to full AI news stories aloud powered by native Web Speech Synthesis.
-- 🏷️ **Topic & Category Filtering**: Instantly filter by *LLMs & GenAI*, *Chips & Hardware*, *Policy & Ethics*, *Startups & VC*, or *Research & Science*.
+- 🏷️ **Topic & Category Filtering**: Instantly filter by *LLMs & GenAI*, *Chips & Hardware*, *AI Regulations*, *Startups & VC*, or *AI Health / Medicines*.
 - 🔍 **Real-Time Instant Search**: Live fuzzy search by keywords, region names, or source publishers.
 - ★ **Bookmarks & Offline Caching**: Save favorite articles locally with persistent `localStorage` support.
-- 📊 **Regional Activity Heat Index**: Live sidebar metrics widget comparing regional AI coverage volume.
+- 📊 **Regional Activity Heat Index**: Live sidebar metrics widget comparing regional AI coverage volume across United States, United Kingdom, East Asia, and Africa.
 
 ---
 
-## 📸 Application Preview
+## 💾 Downloads & Operating System Support
 
-- **Global View**: Multi-region grid displaying color-coded regional tags.
-- **Frameless Window**: Native translucency (`vibrancy` on macOS, `acrylic` on Windows).
-- **Reader & Audio Mode**: Full article view with key bullet points and voice playback controls.
+Aomarize runs natively across **macOS**, **Windows**, and **Linux**. Pre-built binaries are located in the `dist/` directory or can be generated using the build commands below:
 
----
+| Operating System | Recommended Download Package | Alternative Format |
+| :--- | :--- | :--- |
+| 🍏 **macOS** (Apple Silicon & Intel) | **`Aomarize-1.0.0-arm64.dmg`** / **`Aomarize-1.0.0.dmg`** | `Aomarize-1.0.0-mac.zip` |
+| 🪟 **Windows** (10 / 11 64-bit) | **`Aomarize Setup 1.0.0.exe`** (Installer) | `Aomarize 1.0.0.exe` (Portable) / `.zip` |
+| 🐧 **Linux** (Ubuntu, Debian, Fedora, Arch) | **`Aomarize-1.0.0.AppImage`** (Universal) | `Aomarize_1.0.0_amd64.deb` / `.tar.gz` |
 
-## 🚀 Quickstart & Installation
+### 🍏 macOS Installation
+1. Open the downloaded `.dmg` file.
+2. Drag and drop **Aomarize** into your `/Applications` folder.
+3. Launch from Spotlight or Launchpad.
 
-### Prerequisites
+### 🪟 Windows Installation
+1. Run `Aomarize Setup 1.0.0.exe` to install, or double-click `Aomarize Portable.exe` for zero-install instant execution.
+2. A desktop and Start Menu shortcut will be created automatically.
 
-Ensure you have **Node.js** (v18.0.0 or higher) and **npm** installed on your system.
-
-```bash
-node -v
-npm -v
-```
-
-### Installation
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/aomarize.git
-   cd aomarize
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Launch the desktop app**:
-   ```bash
-   npm start
-   ```
-
-> 💡 **macOS Troubleshooting Note**: If macOS displays a Gatekeeper security dialog saying *"Electron.app was not opened because it contains malware"*, run the following command once to clear the macOS download quarantine flag:
-> ```bash
-> xattr -cr node_modules/electron
-> ```
+### 🐧 Linux Installation
+- **AppImage**:
+  ```bash
+  chmod +x Aomarize-1.0.0.AppImage
+  ./Aomarize-1.0.0.AppImage
+  ```
+- **Debian / Ubuntu (.deb)**:
+  ```bash
+  sudo dpkg -i Aomarize_1.0.0_amd64.deb
+  ```
 
 ---
 
 ## 📦 Building for Production
 
-Package Aomarize as a native standalone desktop executable for **Windows**, **macOS**, or **Linux**:
+To build standalone distributable binaries for your operating system:
 
 ```bash
-# Package for your current operating system
-npm run dist
+# Build for macOS (.dmg, .zip)
+npm run build:mac
 
-# Package for development testing
-npm run pack
+# Build for Windows (.exe installer, portable, .zip)
+npm run build:win
+
+# Build for Linux (.AppImage, .deb, .tar.gz)
+npm run build:linux
+
+# Build all target platforms simultaneously
+npm run build:all
 ```
 
-### Supported Target Packages:
-- **Windows**: `.exe` installer (NSIS) or standalone zip
-- **macOS**: `.dmg` disk image or `.app` bundle
-- **Linux**: `.AppImage` or `.deb` package
+All compiled binaries will be output directly to the `./dist/` directory.
 
 ---
 
